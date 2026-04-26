@@ -192,12 +192,20 @@ Update scripts, requirements, and repository organization.
 
 ## Description of any changes to your project plan itself, in particular about your progress so far. Also include changes you made to your plan based on feedback you may have received for Milestone 2.
 
----
+- Originally planned on doing an airplane ticket analysis based on jet fuel price and demand. However, after facing integration issues due to a lack of common variables and a lack of descriptive variables that can be utilized for analysis, we decided to adopt a different project plan. After receiving feedback we chose to analyze the crashes and people datasets from the city of Chicago. 
+
+- Since we began our analysis of the new datasets our Analytical Focus shifted from originally focusing on linking speed cameras, crashes, and injuries to establishing a strong crash-level injury prediction framework first and building a structured dataset that identifies key drivers of injury severity (speed, lighting, weather). This can improve the project because we now have a baseline model of injury risk and speed camera analysis can be layered on top more rigorously. There was also some methodological improvement, instead of only descriptive analysis, we also added Logistic regression modeling and Feature engineering (grouped weather, lighting, speed bins) to improve analysis. The plan was updated to complete crash-level integration from crash and people datasets first then integrate enforcement data from speed camera dataset. 
+
+- Additionally, As discussed after the lab on Thursday, due to scheduling and time coordination issues, we have decided to move forward as a two person team(Mustafa and Chenxi). We will be separating our work from Ethan.
+
 
 ## Summarize any challenges or problems you have encountered so far. For each issue, explain how you resolved it or describe your plan to address it in the near future.
 
+- The first challenge was that the datasets were on different levels so the people - crashes dataset was on the people level and the crashes - crashes dataset was on the crash level. So we addressed this problem by aggregating people to the crash level using groupby based on the crash_record_id variable.
+- Another challenge was that categorical data was disorganized and not standardized. We addressed this by grouping variables like the weather group by weather conditions severity and lighting group by level of darkness. We also standardized missing values across the datasets. 
+- Another challenge was handling the large size of the datasets with two of them exceeding a million rows. To address this we limited data to only the past 5 years, going back to 1-1-2021 and we used pandas for aggregation. We also reduced the dataset to the crash level. 
+- The final challenge was that our initial logistic model was weak. We addressed this by expanding the model from only using speed to also include other variables like weather, lighting and time of day. This improved the interpretability of the model and its relevance.
 
----
 
 
 ## Team member contribution:
@@ -238,5 +246,35 @@ Update scripts, requirements, and repository organization.
 
 ## Mustafa
 
+
+### Data Cleaning and Standardization
+- Converted date/time fields into consistent datetime format for time alignment
+- Standardized categorical variables
+- Grouped fragmented categories into meaningful buckets:
+- Weather: Clear vs Adverse
+- Lighting: Day vs Night vs Low Light
+- Identified and handled missing values:
+- Replaced "UNKNOWN" and "NOT APPLICABLE" with null values
+- Evaluated column level missingness and removed low quality variables where necessary
+
+### Preparation for Integration
+- Ensured CRASH_RECORD_ID consistency and uniqueness
+- Selected and retained relevant variables for analysis
+
+### Feature Engineering
+- Created key analytical variables:
+- any_injury (binary injury indicator)
+- severe_injury (high severity subset)
+- speed_bin (grouped speed limits)
+- weather_group, lighting_group
+- is_night (time-based indicator)
+
+### Exploratory Analysis
+Conducted group-based comparisons based on injury rates by speed, weather, and lighting
+
+### Model Development
+- Implemented a logistic regression model to estimate injury probability
+- Evaluated relationships between Speed, Environmental conditions, and Time based variables
+- Generated interpretable outputs: Predicted probabilities, Coefficients and directional effects
 
 

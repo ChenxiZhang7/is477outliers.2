@@ -185,3 +185,58 @@ Update scripts, requirements, and repository organization.
 **Write final README / report — May 2**
 
 **Create final release and submit — May 3**
+
+
+---
+
+
+## Description of any changes to your project plan itself, in particular about your progress so far. Also include changes you made to your plan based on feedback you may have received for Milestone 2.
+
+---
+
+## Summarize any challenges or problems you have encountered so far. For each issue, explain how you resolved it or describe your plan to address it in the near future.
+
+
+---
+
+
+## Team member contribution:
+
+## Chenxi
+
+### Project Planning and Direction Revision
+
+- Supported the transition from the original airline pricing proposal to the Chicago traffic safety datasets after identifying integration limitations in the initial project plan.
+- Helped refine the updated research focus toward crash-level injury severity analysis using the crashes and people datasets.
+
+### Milestone Documentation and Reporting
+
+- Prepared updates on planned tasks for the interim status report.
+- Created the revised project timeline based on completed work, current progress, and remaining deliverables.
+- Wrote and edited sections of `StatusReport.md` to ensure milestone requirements were clearly addressed.
+
+### Methodology and Project Structure
+
+- Reviewed Milestone 2 feedback and helped update the analytical strategy.
+- Supported prioritizing crash-level integration before optional speed camera integration.
+- Assisted with identifying relevant variables for future analysis and modeling.
+
+### Data Integration Review
+
+- Reviewed the relationship between the crashes dataset and people dataset beyond the basic merge process.
+- Compared crash-level and person-level units of observation and evaluated one-to-many integration structure.
+- Evaluated whether aggregating people-level records to the crash level is more appropriate than direct person-level merging for the current research question.
+- Reviewed the possible integration of the Speed Camera Violations dataset and identified challenges such as lack of shared identifiers, different units of observation, and many-to-many date matching risks.
+- Explored future integration approaches including daily aggregation and possible location-based comparisons using coordinates.
+
+### Repository Coordination
+
+- Helped organize project deliverables and report structure in the shared GitHub repository.
+- Added commits related to milestone documentation and project updates.
+
+---
+
+## Mustafa
+
+
+

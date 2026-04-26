@@ -4,7 +4,7 @@
 ---
 
 
-## Update on each of the tasks described on your project plan including references and links to specific artifacts in your repository (such as datasets, scripts, workflows, workflow diagrams, etc).
+## Update on each of the tasks described on the project plan:
 
 ### 1. Data Collection and Dataset Selection
 
@@ -103,3 +103,85 @@ The first version used only speed-related variables. We later improved the model
 This created a stronger baseline model.
 
 We are also reviewing how future models may incorporate aggregated speed camera enforcement variables, such as daily violations or camera-zone activity levels, after resolving integration challenges.
+
+
+---
+
+
+## Updated timeline indicating the status of each task and when they will be completed:
+
+### Phase 1 — Project Planning (Completed)
+
+All planning tasks, repository setup, dataset review, and `ProjectPlan.md` were completed on schedule.
+
+- Finalize research questions — Completed
+- Identify and evaluate datasets — Completed
+- Review licenses and terms of use — Completed
+- Explore dataset structures — Completed
+- Set up GitHub repository and project structure — Completed
+- Prepare and submit `ProjectPlan.md` — Completed
+
+---
+
+### Phase 2 — Data Cleaning and Crash-Level Integration (Apr 13 – Apr 25)
+
+**Download and inspect datasets — Completed**  
+Collected selected Chicago transportation datasets and reviewed data structure.
+
+**Clean crashes dataset — Completed**  
+Standardized date/time variables, cleaned environmental condition fields, removed low-quality values.
+
+**Clean people dataset — Completed**  
+Standardized injury classifications, removed invalid IDs, handled missing values.
+
+**Aggregate people-level data to crash level — Completed**  
+Grouped people records using `CRASH_RECORD_ID`.
+
+**Merge crashes and people datasets — Completed**  
+Created `merged_dataset.csv` for crash-level analysis.
+
+**Initial exploratory analysis — In Progress**  
+Reviewed injury rates by speed, lighting, and weather.
+
+**Data integration review between current datasets — In Progress**  
+Comparing crash-level and person-level units of observation and evaluating whether aggregation is the most appropriate method.
+
+**Speed camera integration feasibility review — In Progress**  
+Reviewing structural differences between the camera dataset and crash datasets, including missing shared identifiers and many-to-many matching risks.
+
+**Prepare and submit `Interim Status Report.md` — In Progress**
+
+---
+
+### Phase 3 — Analysis and Final Development (Apr 23 – May 3)
+
+**Finalize feature engineering — Apr 25**  
+Complete variables such as:
+
+- `speed_bin`
+- `severe_injury`
+- `weather_group`
+- `lighting_group`
+- `is_night`
+
+**Develop predictive models — Apr 26**  
+Complete logistic regression and compare model performance.
+
+**Create visualizations — Apr 28**  
+Produce charts showing injury risk by major variables.
+
+**Optional speed camera integration — Apr 29**  
+If feasible, aggregate violations by date and compare with crash outcomes.
+
+**Evaluate location-based camera integration methods — Apr 29**  
+Explore whether camera coordinates can be used for proximity-based comparisons with crash locations.
+
+**Write data dictionary / metadata — Apr 30**  
+Document datasets, variables, and transformations.
+
+**Finalize workflow / reproducibility files — May 1**  
+Update scripts, requirements, and repository organization.
+
+**Write final README / report — May 2**
+
+**Create final release and submit — May 3**

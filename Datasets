@@ -4,3 +4,35 @@ Crashes: https://uillinoisedu-my.sharepoint.com/:x:/g/personal/melza3_illinois_e
 People: https://uillinoisedu-my.sharepoint.com/:x:/g/personal/melza3_illinois_edu/IQC9W2ccTq-3QLR7e87dC-I8AaDaHStLBnAZ7Ut1BRatMaw
 Merged set: https://uillinoisedu-my.sharepoint.com/:x:/g/personal/melza3_illinois_edu/IQD5aF5SnX1WTo6C8JarqldFAQoFe8XIvneORxEXhaNAHss
 
+Original datasets: 
+  
+### Dataset 1: Speed Camera Violations 
+   
+   - Source: City of Chicago Data Portal
+    
+   - Link: https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data
+   
+   - Variable Examples: ADDRESS, CAMERA_ID, VIOLATION_DATE, VIOLATIONS, X_COORDINATE, Y_COORDINATE, LATITUDE, LONGITUDE, LOCATION                                     
+   
+   - Description: This dataset reflects the daily volume of violations that have occurred in Children's Safety Zones for each camera. The data reflects violations that occurred from July 1, 2014 until present, minus the most recent 14 days. This data may change due to occasional time lags between the capturing of a potential violation and the processing and determination of a violation. The reported violations are those that have been collected by the camera and radar system and reviewed by two separate City contractors. Each row within the set represents the number of violations recorded by a specific camera on a given day which makes the dataset a time series panel of enforcement activity. Some of the variables included within the dataset are identifying information such as the address, unique camera ID, a timestamp indicating when the violation occurred, and the total number of violations observed.
+   
+ ### Dataset 2: Traffic Crashes – People
+    
+  - Source: City of Chicago Data Portal
+  
+  - Link: https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data 
+  
+  - Variable Examples: PERSON_ID, PERSON_TYPE, CRASH_RECORD_ID, VEHICLE_ID, CRASH_DATE, SEAT_NO, CITY, STATE, ZIPCODE, SEX, AGE, DRIVERS_LICENSE_STATE, DRIVERS_LICENSE_CLASS, SAFETY_EQUIPMENT, AIRBAG_DEPLOYED, EJECTION, INJURY_CLASSIFICATION, HOSPITAL, EMS_AGENCY, EMS_RUN_NO, DRIVER_ACTION, DRIVER_VISION, PHYSICAL_CONDITION, PEDPEDAL_ACTION, PEDPEDAL_VISIBILITY, PEDPEDAL_LOCATION, BAC_RESULT, BAC_RESULT_VALUE, CELL_PHONE_USE
+
+  - Description: The Traffic Crashes – People dataset contains information about individuals involved in traffic crashes in Chicago and whether they were injured. Each row represents one person involved in a crash, including drivers, passengers, pedestrians, or cyclists. The dataset includes characteristics such as age, gender, safety equipment use, airbag deployment, and injury classification. Records can be linked to crash events and vehicles using the shared CRASH_RECORD_ID, allowing analysis of how crash conditions and vehicle involvement relate to injuries.
+
+ ### Dataset 3: Traffic Crashes - Crashes
+  
+  - Source: City of Chicago Data Portal
+    
+  - Link: https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data
+    
+  - Variable Examples: CRASH_RECORD_ID, CRASH_DATE_EST_I, CRASH_DATE, POSTED_SPEED_LIMIT, TRAFFIC_CONTROL_DEVICE, DEVICE_CONDITION, WEATHER_CONDITION, LIGHTING_CONDITION, FIRST_CRASH_TYPE, TRAFFICWAY_TYPE, LANE_CNT, ALIGNMENT, ROADWAY_SURFACE_COND, ROAD_DEFECT, REPORT_TYPE, CRASH_TYPE
+
+  - Description: This dataset contains detailed records of traffic crashes occurring within the City of Chicago under the jurisdiction of the Chicago Police Department (CPD). Each record represents a single crash event and includes information such as crash date and time, location, environmental conditions, and contributing factors. The data are sourced from CPD’s electronic crash reporting system (E-Crash) and are updated as reports are finalized or amended.
+The dataset includes both police-reported crashes and self-reported incidents, though some variables (e.g., weather, road conditions) are based on the reporting officer’s best available information at the time and may contain inconsistencies. Citywide coverage is available starting from September 2017. Crashes outside CPD jurisdiction (e.g., on interstate highways) are excluded.

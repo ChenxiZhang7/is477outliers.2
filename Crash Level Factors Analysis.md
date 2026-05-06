@@ -3,7 +3,7 @@
 ---
 
 ### Team Outliers
-Mustafa El Zayyat
+Mustafa El Zayyat , 
 Chenxi Zhang
 
 ---
@@ -110,9 +110,83 @@ For transparency and reproducibility, we recorded and cleaned this dataset, alth
 
 ---
 
-## Findings: [~500 words] Description of any findings including numeric results and/or visualizations.
+## Findings: Description of any findings including numeric results and/or visualizations.
 
----
+## What Was Done
+
+### Feature Engineering & Grouping
+- Created categorical groupings for:
+  - Weather conditions (`weather_group`)
+  - Lighting conditions (`lighting_group`)
+  - Speed levels (`speed_bin`)
+- Calculated average injury rates (`any_injury`) within each group to identify patterns
+
+### Model Building
+- Built a logistic regression model to predict probability of injury
+- Features used:
+  - Posted speed limit
+  - Weather group
+  - Lighting group
+  - Night indicator (`is_night`)
+- Applied one-hot encoding (`pd.get_dummies`) for categorical variables
+
+### Model Outputs
+- Generated:
+  - Predicted probabilities (`predict_proba`)
+  - Binary predictions (`predict`)
+- Evaluated model using:
+  - Accuracy
+  - ROC-AUC
+
+
+## Key Findings
+
+### Weather Impact on Injuries
+- Injury rates are similar across weather conditions (~11–11.5%)
+- “Bad” and “Severe crosswind” conditions are only slightly higher than clear weather  
+
+**Insight:**  
+Weather alone is not a strong differentiator for injury likelihood
+
+
+### Lighting Conditions
+- Night: ~13.4% (highest)
+- Low light: ~12.0%
+- Day: ~9.8% (lowest)
+
+**Insight:**  
+Injury likelihood increases significantly as visibility decreases  
+Lighting is a stronger predictor than weather
+
+
+### Speed (Strongest Driver)
+- Low speed: ~6.6%
+- Medium: ~11.2%
+- High: ~14.7% (peak)
+- Very high: ~14.0%
+
+**Insight:**  
+Injury risk more than doubles from low to high speeds  
+Speed is the most impactful variable in the dataset
+
+
+## Model Performance
+
+- Accuracy: ~89.6%
+- ROC-AUC: ~0.587
+
+**Interpretation:**
+- High accuracy is misleading (likely due to class imbalance)
+- Low AUC (~0.59) indicates weak predictive power
+- Current features do not strongly separate injury vs. non-injury cases
+
+
+## Overall Takeaways
+
+- Speed and lighting conditions are the primary drivers of injury risk
+- Weather has minimal impact relative to other factors
+- The model captures some signal but lacks strong predictive ability
+
 
 ## Future work: [~500-1000 words] Brief discussion of any lessons learned and potential future work.
 

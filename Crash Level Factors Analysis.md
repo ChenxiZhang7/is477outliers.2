@@ -15,37 +15,51 @@ Chenxi Zhang
 - Research question: What factors are most strongly associated with traffic crash occurrences in Chicago? Another question we sought to answer was how well can these variables predict injury outcomes when used in a logistic regression model?
 - In order to address the research questions we began by cleaning and standardizing the dataset and then merged them at the crash level. The main difference was that the People dataset was at the individual level and the crashes dataset was at the crash level, so we aggregated the data using the  crash_record_id to create a combined dataset. We also did some feature engineering to improve the dataset’s interpretability, including grouping weather conditions by severity, lighting conditions by visibility, and speed into discrete categories. We also restricted the dataset only to the recent five years to improve its relevance to analysis and for storage capacity.
 
-
 ---
 
 ## Data profile: [max 2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project 
 
-### Dataset 1: Traffic Crashes - People
-https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data 
+### Dataset 1: Speed Camera Violations
+#### Source: 
+City of Chicago Data Portal         
+#### Link: 
+https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data                                                                             
+#### File location: 
+The raw data is accessed directly from the Chicago Data Portal API. No manual download is required, the notebook fetches it automatically at runtime. The cleaned dataset is included in the project GitHub repository as speed_camera_violations.csv.
+#### Structure: 
+This is the smallest of the three datasets, with only 9 columns. We filtered a total of 234,913 lines after 2021. We found that this dataset appears once a day for each camera. It can be understood as the daily log recorded by each camera. The contents listed are divided into three categories: camera information camera_id, address, violations of the day such as violation_date, violations, And the geographical locations of the camera: latitude, longitude, x_coordinate, y_coordinate, location. The entire dataset has a very regular structure and no complex nested relationships. Youdaoplaceholder0 is the only numerical measurement column, and the rest of the columns are either identifiers or geographic information.
+#### Content:
+This dataset tracks daily speed violations recorded by cameras in Children's Safety Zones across Chicago. Each camera detects vehicles that exceed the speed limit. Violations are reviewed by two separate contractors before being recorded. The full dataset covers July 2014 to the present, minus the most recent 14 days. We filtered to 2021 onward to match the time window of the other two datasets. 
+#### Characteristics:
+The violations column is the core measure. Its distribution is right skewed. The minimum is 1 violation per camera day, the maximum is 1,888, the mean is 56.5, and the median is 34. Most camera days record moderate counts, but a small number of high traffic locations produce very high numbers on certain days. Geographic coordinates are missing for 3.23% of records.
+We loaded and cleaned this dataset for completeness. However, it was not integrated into the crash model. There is no shared row level key linking camera records to crash records. This is explained in the Data Quality section.  
 
-The Traffic Crashes – People dataset contains information about individuals involved in traffic crashes in Chicago and whether they were injured. Each row represents one person involved in a crash, including drivers, passengers, pedestrians, or cyclists. The dataset includes characteristics such as age, gender, safety equipment use, airbag deployment, and injury classification. Records can be linked to crash events and vehicles using the shared CRASH_RECORD_ID, allowing analysis of how crash conditions and vehicle involvement relate to injuries.
+### Dataset 2: Traffic Crashes – People
+#### Source: 
+City of Chicago Data Portal                                                                                                                                                  #### Link: 
+https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data
+#### File location: 
+The raw data is accessed directly from the Chicago Data Portal API. No manual download is required, the notebook fetches it automatically at runtime. The cleaned dataset is included in the project GitHub repository as people_dataset.csv.
+#### Structure:
+This is the dataset with the largest volume of data that we have used. After filtering up to 2021, there were a total of 1,276,673 rows and 29 columns. We retained 19 columns after cleaning. There is a key point in understanding this dataset: an incident can generate multiple rows of data. Each person involved has their own line of record. For example, in an accident involving three people, there will be three lines here, all sharing the same crash_record_id. It is this crash_record_id that enables us to concatenate this dataset with the Crashes dataset. The remaining 19 The column contents cover the basic information of personnel such as person_id, person_type, sex, age, the protection status at that time safety_equipment, airbag_deployed, injury result injury_classification, and driving behavior driver_a ction, driver_vision. Among them
+injury_classification is the column we care about the most. It records the severity of injury for each person, ranging from no obvious injury to death in five grades.
+#### Content:
+This dataset records everyone involved in a Chicago traffic crash. It captures who was in the crash, their demographics, how they were protected, and how severely they were injured. Each person is linked to a crash event through crash_record_id, which we used to join this dataset with the Crashes dataset. This linkage is what allows us to combine person-level injury outcomes with crash level environmental conditions.
+#### Characteristics:
+The outcome variable injury_classification is missing for only 0.02% of records. So we think it is reliable as a modeling target. Fatal injuries are rare, 354 for drivers and 210 for pedestrians. Several behavioral columns have high missingness after placeholder replacement, driver_action is 69.5% missing, driver_vision is 63.6% missing. These fields are likely only filled when a formal investigation occurs, which may introduce selection bias toward more severe crashes.                                       
 
-**Ethical or legal constraints:** Publicly available dataset that is allowed for research. Risk of identifying specific people or crashes if combined with other datasets. Also can be potentially misused due to its relevance to city policy. 
-
-**Location:** 
-
-### Dataset 2: Traffic Crashes - Crashes
-https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data 
-
-This dataset contains detailed records of traffic crashes occurring within the City of Chicago under the jurisdiction of the Chicago Police Department (CPD). Each record represents a single crash event and includes information such as crash date and time, location, environmental conditions, and contributing factors. The data are sourced from CPD’s electronic crash reporting system (E-Crash) and are updated as reports are finalized or amended. The dataset includes both police-reported crashes and self-reported incidents, though some variables (e.g., weather, road conditions) are based on the reporting officer’s best available information at the time and may contain inconsistencies. Citywide coverage is available starting from September 2017. Crashes outside CPD jurisdiction (e.g., on interstate highways) are excluded. Records can be linked to crash events from the people dataset and vehicles using the shared CRASH_RECORD_ID, allowing analysis of how crash conditions and vehicle involvement relate to injuries.
-
-**Ethical or legal constraints:** Publicly available dataset that is allowed for research. Dataset includes demographic information therefore there is a risk of drawing biased conclusions regarding specific groups 
-
-**Location:**
-
-### Dataset 3 : Speed Camera Violations
-https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data 
-
-This dataset reflects the daily volume of violations that have occurred in Children's Safety Zones for each camera. The data reflects violations that occurred from July 1, 2014 until present, minus the most recent 14 days. This data may change due to occasional time lags between the capturing of a potential violation and the processing and determination of a violation. The reported violations are those that have been collected by the camera and radar system and reviewed by two separate City contractors. Each row within the set represents the number of violations recorded by a specific camera on a given day which makes the dataset a time series panel of enforcement activity. Some of the variables included within the dataset are identifying information such as the address, unique camera ID, a timestamp indicating when the violation occurred, and the total number of violations observed.
-
-**Ethical or legal constraints:** Publicly available dataset that is allowed for research. The location of speed cameras is impactful on analysis and influences its interpretation as there may be uneven enforcement across different neighborhoods.
-
-**Location:**
+### Dataset 3 : Traffic Crashes – Crashes
+#### Source: 
+City of Chicago Data Portal
+#### Link: 
+https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data
+#### File location: 
+The raw data is accessed directly from the Chicago Data Portal API. No manual download is required, the notebook fetches it automatically at runtime. The cleaned dataset is included in the project GitHub repository as crashes_dataset.csv. The merged dataset combining People and Crashes is also included as merged_dataset.csv.
+#### Structure:
+This dataset has one line corresponding to one incident. After filtering to 2021, there are a total of 585,088 lines. This dataset is characterized by a large number of columns, totaling 48 columns, which record a large amount of background information at the time of each accident. In terms of time, there are crash_hour, crash_day_of_week and crash_month. For road conditions and weather, there are condition, lightingcondition, roadway_surface_cond, posted_speed_limit, and traffic_control_device. In terms of geographical location, there are latitude and longitude. The casualty results are split into five severity columns, ranging from no obvious injury injuries_no_indication to death injuries_fatal, with each column recording the number of people corresponding to the level of the accident. Each row is connected to the corresponding personnel record in the People dataset through crash_record_id, which is also the basis for us to merge the two datasets.
+#### Content: 
+This dataset records the circumstances of each crash location, road and weather conditions, time, and injury outcomes. Data comes from CPD's electronic crash reporting system and is updated as reports are finalized. It covers both police reported and self reported crashes within CPD jurisdiction. Crashes on interstate highways and outside CPD jurisdiction are excluded. Citywide coverage begins in September 2017. We filtered to 2021 to match the other datasets.                                                  #### Characteristics:
+Posted speed limits range from 0 to 70 mph, with both the mean and median around 30 mph, which is consistent with urban street driving in Chicago. The average crash involves just over 2 vehicles. Crash hour peaks in the afternoon, with a mean of 13:15. Injury columns are missing for 1,324 records. Geographic coordinates are missing for 5,546 rows. One notable issue is that 43,443 records have weather_condition recorded as UNKNOWN, which we converted to missing during cleaning. Some environmental fields such as weather and road conditions are based on the reporting officer's best judgment at the time, which may introduce inconsistencies.
 
 ---
 

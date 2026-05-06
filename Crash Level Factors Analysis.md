@@ -20,6 +20,18 @@ Research question: What factors are most strongly associated with traffic crash 
 
 ## Data quality: [500-1000 words] Summary of the quality assessment.
 
+### Dataset 1: Traffic Crashes – People
+#### Before Cleaning 
+The People dataset, loaded via the Socrata API filtered to records from 2021-01-01, has 1,276,673 rows and 29 columns. After standardizing sentinel values ("UNKNOWN", "NONE", and empty strings to pd.NA). We find severe missingness across columns. Ten columns exceed the 80% missingness threshold and were dropped: cell_phone_use (100.0%), bac_result_value (99.9%), ejection (99.7%), ems_run_no (98.6%), pedpedal_visibility, pedpedal_location, and pedpedal_action (all ~97.9%), ems_agency (92.3%), hospital (87.3%), and seat_no (80.2%). These columns carry negligible signal across the dataset. 
+
+Consistency issues include mixed-case values in sex (M/F/X) and person_type, and crash_date stored as an ISO timestamp string requiring datetime parsing. Validity concerns include the pervasive use of "UNKNOWN" and "NONE" as non-null placeholder strings across categorical fields, which without standardization would inflate category counts in any groupby operation.
+
+#### After Cleaning
+After dropping the 10 high-missingness columns, 19 columns remain. Column names were lowercased, crash_date converted to datetime, and the date filter applied as a safety check (no additional rows removed since the API already filtered to 2021+). Residual missingness in retained columns: driver_action (69.5%), driver_vision (63.6%), drivers_license_class (54.2%), physical_condition (49.2%), drivers_license_state (41.8%), zipcode (33.0%), age (29.5%), city (28.5%), state (26.8%), bac_result (20.0%). The key outcome variable injury_classification has near-zero missingness (0.02%), confirming the target label is reliable.
+
+#### Potential Drawbacks
+We find igh missingness in driver_action, driver_vision, and physical_condition means these columns cannot be used as model features without imputation or subsetting, and the subset of records where they are populated likely corresponds to more severe or formally investigated crashes. So there might be selection bias. Dropping the pedestrian-specific columns (pedpedal_action, pedpedal_visibility, pedpedal_location) means pedestrian-involved crashes lose their specific behavioral context.
+  
 ---
 
 

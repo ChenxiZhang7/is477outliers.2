@@ -194,7 +194,70 @@ Speed is the most impactful variable in the dataset
 
 ## Challenges: [~500 words] Discuss the main challenges you encountered while working on the project.
 
----
+### 1. Mismatched Data Granularity
+
+**Challenge:**  
+The datasets were structured at different levels:
+- `Traffic Crashes – People` dataset: person-level (multiple records per crash)
+- `Traffic Crashes – Crashes` dataset: crash-level (one record per crash)
+
+This created inconsistency when trying to merge and analyze the data because one crash could have multiple associated people records.
+
+**Solution:**  
+- Aggregated the people-level dataset up to the crash level using `groupby` on `crash_record_id`
+- Created aggregated metrics such as:
+  - Whether any injury occurred in the crash (`any_injury`)
+  - Counts or indicators derived from person-level attributes
+- This ensured a **one-to-one match** between datasets and allowed for consistent merging and analysis
+
+### 2. Unstructured and Inconsistent Categorical Data
+
+**Challenge:**  
+Categorical variables (e.g., weather, lighting) were:
+- Highly granular and inconsistent
+- Difficult to interpret directly
+- Contained missing or non-standardized values across datasets
+
+**Solution:**  
+- Grouped raw categories into more meaningful and interpretable buckets:
+  - `weather_group`: based on severity (ex: clear, moderate, severe)
+  - `lighting_group`: based on visibility levels (ex: daylight, low light, night)
+- Standardized missing values across datasets to ensure consistency
+- Cleaned and aligned categorical labels to avoid duplication (ex: variations in naming)
+
+**Impact:**  
+Improved interpretability of data and made variables more useful for both analysis and modeling
+
+
+### 3. Large Dataset Size and Computational Constraints
+
+**Challenge:**  
+- Two datasets exceeded **1 million rows** which created performance and memory challenges
+- Slower processing times during merging and cleaning
+
+**Solution:**  
+- Filtered data to the most recent 5 years (from **01-01-2021 onward**) to:
+  - Maintain relevance
+  - Reduce dataset size
+- Used efficient operations in `pandas`:
+  - Vectorized transformations
+  - `groupby` for aggregation
+- Reduced data to the crash level, significantly decreasing total row count
+
+### 4. Weak Initial Model Performance
+
+**Challenge:**  
+- Initial logistic regression model used only **speed-related variables**
+- Resulted in weak predictive power and limited insight
+- Failed to capture the complexity of injury outcomes
+
+**Solution:**  
+- Expanded the feature set to include:
+  - Weather conditions
+  - Lighting conditions
+  - Time of day (night indicator)
+- Incorporated engineered categorical variables for better signal extraction
+- Re-ran the model with a broader set of predictors
 
 ## Reproducing: Sequence of steps required for someone else to reproduce your results.
 

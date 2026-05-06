@@ -68,6 +68,23 @@ For these reasons, the Speed Camera dataset was excluded from model integration.
 
 ## Data cleaning: [max 1000 words] Summarize the data cleaning operations you performed and explain how each operation addressed specific data quality issues in your datasets.
 
+### Shared Cleaning Pipeline
+We applied the same base cleaning steps to all three datasets. We think this can help keep our process consistent and makes it easier to reproduce.
+1.	Replacing placeholder strings. All empty entries were replaced with missing values. Without this step, these strings would appear as real categories and inflate group counts in any analysis.
+2.	Lowercasing column names. All column names were converted to lowercase. We did this because we think this can help prevents case mismatch errors when referencing the same column across datasets.
+3.	Parsing date columns. Date fields were converted from text strings to datetime format. We think it's important before any date based filtering or comparison.
+4.	We kept only records from January 1, 2021. This gives us a consistent time window across all three datasets.
+
+### Dataset-Specific Steps
+
+### Merging People and Crashes
+
+### Aggregating to Crash Level
+
+### Feature Engineering
+
+### Speed Camera Dataset
+
 ---
 
 ## Findings: [~500 words] Description of any findings including numeric results and/or visualizations.

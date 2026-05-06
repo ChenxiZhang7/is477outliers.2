@@ -76,8 +76,16 @@ We applied the same base cleaning steps to all three datasets. We think this can
 4.	We kept only records from January 1, 2021. This gives us a consistent time window across all three datasets.
 
 ### Dataset-Specific Steps
+For the People set, we added one extra step, like dropping columns with more than 80% missing values. We chose 80% as the threshold because columns beyond that point contain too little data to be useful for modeling. Ten columns were removed. We also uppercased values in sex and person_type to fix mixed case inconsistencies found during profiling. 
+For the Crashes set, the shared pipeline was applied. The >80% threshold step was not run on this dataset because profiling showed the columns were generally well populated. 
 
 ### Merging People and Crashes
+We joined the People and Crashes datasets on crash_record_id using a left join. We chose a left join to keep every person record. Crash level attributes like weather, road conditions, time, and location were added to each row.
+We verified that crash_record_id had zero missing values after the join, confirming no records were lost.
+At this stage the data is still person level. Multiple people in the same crash each have their own row, all sharing the same crash attributes.
+We then constructed two binary outcome variables on dfm:
+- any_injury: 1 if anyone in the crash had non incapacitating, incapacitating, or fatal injury
+- severe_injury: 1 if anyone had an incapacitating or fatal injury
 
 ### Aggregating to Crash Level
 

@@ -20,6 +20,33 @@ Chenxi Zhang
 
 ## Data profile: [max 2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project 
 
+### Dataset 1: Traffic Crashes - People
+https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data 
+
+The Traffic Crashes – People dataset contains information about individuals involved in traffic crashes in Chicago and whether they were injured. Each row represents one person involved in a crash, including drivers, passengers, pedestrians, or cyclists. The dataset includes characteristics such as age, gender, safety equipment use, airbag deployment, and injury classification. Records can be linked to crash events and vehicles using the shared CRASH_RECORD_ID, allowing analysis of how crash conditions and vehicle involvement relate to injuries.
+
+**Ethical or legal constraints:** Publicly available dataset that is allowed for research. Risk of identifying specific people or crashes if combined with other datasets. Also can be potentially misused due to its relevance to city policy. 
+
+**Location:** 
+
+### Dataset 2: Traffic Crashes - Crashes
+https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data 
+
+This dataset contains detailed records of traffic crashes occurring within the City of Chicago under the jurisdiction of the Chicago Police Department (CPD). Each record represents a single crash event and includes information such as crash date and time, location, environmental conditions, and contributing factors. The data are sourced from CPD’s electronic crash reporting system (E-Crash) and are updated as reports are finalized or amended. The dataset includes both police-reported crashes and self-reported incidents, though some variables (e.g., weather, road conditions) are based on the reporting officer’s best available information at the time and may contain inconsistencies. Citywide coverage is available starting from September 2017. Crashes outside CPD jurisdiction (e.g., on interstate highways) are excluded. Records can be linked to crash events from the people dataset and vehicles using the shared CRASH_RECORD_ID, allowing analysis of how crash conditions and vehicle involvement relate to injuries.
+
+**Ethical or legal constraints:** Publicly available dataset that is allowed for research. Dataset includes demographic information therefore there is a risk of drawing biased conclusions regarding specific groups 
+
+**Location:**
+
+### Dataset 3 : Speed Camera Violations
+https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data 
+
+This dataset reflects the daily volume of violations that have occurred in Children's Safety Zones for each camera. The data reflects violations that occurred from July 1, 2014 until present, minus the most recent 14 days. This data may change due to occasional time lags between the capturing of a potential violation and the processing and determination of a violation. The reported violations are those that have been collected by the camera and radar system and reviewed by two separate City contractors. Each row within the set represents the number of violations recorded by a specific camera on a given day which makes the dataset a time series panel of enforcement activity. Some of the variables included within the dataset are identifying information such as the address, unique camera ID, a timestamp indicating when the violation occurred, and the total number of violations observed.
+
+**Ethical or legal constraints:** Publicly available dataset that is allowed for research. The location of speed cameras is impactful on analysis and influences its interpretation as there may be uneven enforcement across different neighborhoods.
+
+**Location:**
+
 ---
 
 ## Data quality: [500-1000 words] Summary of the quality assessment.

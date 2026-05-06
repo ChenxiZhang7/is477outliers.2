@@ -2,7 +2,7 @@
 
 ---
 
-###Team Outliers
+### Team Outliers
 Mustafa El Zayyat
 Chenxi Zhang
 

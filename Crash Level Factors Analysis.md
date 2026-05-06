@@ -65,7 +65,6 @@ For these reasons, the Speed Camera dataset was excluded from model integration.
 
 ---
 
-
 ## Data cleaning: [max 1000 words] Summarize the data cleaning operations you performed and explain how each operation addressed specific data quality issues in your datasets.
 
 ### Shared Cleaning Pipeline
@@ -127,6 +126,6 @@ For transparency and reproducibility, we recorded and cleaned this dataset, alth
 
 ---
 
-References: Formatted citations for any papers, datasets, or software used in your project.
-City of Chicago. (2026). Traffic Crashes – People. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data
-City of Chicago. (2026). Traffic Crashes – Crashes. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data
+## References: Formatted citations for any papers, datasets, or software used in your project.
+
+

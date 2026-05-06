@@ -29,9 +29,28 @@ Consistency issues include mixed-case values in sex (M/F/X) and person_type, and
 #### After Cleaning
 After dropping the 10 high-missingness columns, 19 columns remain. Column names were lowercased, crash_date converted to datetime, and the date filter applied as a safety check (no additional rows removed since the API already filtered to 2021+). Residual missingness in retained columns: driver_action (69.5%), driver_vision (63.6%), drivers_license_class (54.2%), physical_condition (49.2%), drivers_license_state (41.8%), zipcode (33.0%), age (29.5%), city (28.5%), state (26.8%), bac_result (20.0%). The key outcome variable injury_classification has near-zero missingness (0.02%), confirming the target label is reliable.
 
-#### Potential Drawbacks
+#### Potential Drawbacks of Cleaning
 We find igh missingness in driver_action, driver_vision, and physical_condition means these columns cannot be used as model features without imputation or subsetting, and the subset of records where they are populated likely corresponds to more severe or formally investigated crashes. So there might be selection bias. Dropping the pedestrian-specific columns (pedpedal_action, pedpedal_visibility, pedpedal_location) means pedestrian-involved crashes lose their specific behavioral context.
-  
+
+### Dataset 2: Traffic Crashes Dataset
+#### Before Cleaning 
+
+
+#### After Cleaning
+
+
+#### Potential Drawbacks of Cleaning
+
+
+### Dataset 3: Speed Camera Violations Dataset
+#### Before Cleaning 
+
+
+#### After Cleaning
+
+
+#### Potential Drawbacks of Cleaning
+
 ---
 
 

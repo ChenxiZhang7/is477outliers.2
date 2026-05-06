@@ -1,7 +1,9 @@
 # Title: Crash level factors analysis 
 
-### Contributors: Bulleted list of contributors (with optional ORCIDs).
+###Team Outliers
+
 Mustafa El Zayyat
+
 Chenxi Zhang
 
 ## Summary: [500-600 words] Description of your project, motivation, research question(s), and any findings

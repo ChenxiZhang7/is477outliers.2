@@ -86,6 +86,12 @@ This dataset records the circumstances of each crash location, road and weather 
 #### Characteristics:
 Posted speed limits range from 0 to 70 mph, with both the mean and median around 30 mph, which is consistent with urban street driving in Chicago. The average crash involves just over 2 vehicles. Crash hour peaks in the afternoon, with a mean of 13:15. Injury columns are missing for 1,324 records. Geographic coordinates are missing for 5,546 rows. One notable issue is that 43,443 records have `weather_condition` recorded as UNKNOWN, which we converted to missing during cleaning. Some environmental fields such as weather and road conditions are based on the reporting officer's best judgment at the time, which may introduce inconsistencies.
 
+#### Ethical and Legal Constraints
+All three datasets are published by the City of Chicago on Chicago Data Portal under the City of Chicago Data Portal Terms of Use. It permits unrestricted access, use and redistribution for non commercial and research purposes. No special permissions or licenses are required.  
+                                                                                                                                                                      
+The datasets do not contain personally identifiable information. The People dataset records demographic attributes and injury classification at the incident level but does not include names, addresses, or any direct  identifier. Crash records are linked by a system generated crash_record_id that cannot be traced back to individuals. 
+
+
 ---
 
 ## Data quality:

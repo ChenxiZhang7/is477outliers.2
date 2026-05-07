@@ -8,7 +8,7 @@ Chenxi Zhang
 
 ---
 
-## Summary: Description of your project, motivation, research question(s), and any findings
+## Summary:
 - Description: Our group originally planned on doing an airplane ticket analysis based on jet fuel price and demand. However, after facing integration issues due to a lack of common variables and a lack of descriptive variables that can be utilized for analysis, we decided to adopt a different project plan. After receiving feedback we chose to analyze the crashes and people datasets from the city of Chicago. Since we began our analysis of the new datasets, our analytical focus shifted from originally focusing on linking speed cameras, crashes, and injuries to establishing a strong crash-level injury prediction framework first and building a structured dataset that identifies key drivers of injury severity (speed, lighting, weather). This can improve the project because we now have a baseline model of injury risk and speed camera analysis can be layered on top more rigorously for analysis. There was also some methodological improvement, instead of only descriptive analysis, we also added logistic regression modeling and feature engineering (grouped weather, lighting, speed bins) to improve analysis. The plan was updated to complete crash-level integration from crash and people datasets first then integrate enforcement data from the speed camera dataset.
 
 - Motivation: The motivation behind this analysis is the increasing reliance on data-driven decision making in urban planning and public safety. Cities heavily invest within their infrastructure and traffic enforcement, but these efforts are most effective when they are directed by evident insights into the risk factors that influence car crashes. By examining crash data, this project can potentially contribute to that understanding by examining the relative impact of variables such as speed, lighting conditions, and weather. Additionally, the project explores whether these variables can be used not just in a descriptive capacity, but also in a predictive capacity, through the development of a statistical model.
@@ -21,7 +21,7 @@ Chenxi Zhang
 
 ---
 
-## Data profile: [max 2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project 
+## Data profile:
 
 ### Dataset 1: Speed Camera Violations
 
@@ -88,7 +88,7 @@ Posted speed limits range from 0 to 70 mph, with both the mean and median around
 
 ---
 
-## Data quality: [500-1000 words] Summary of the quality assessment.
+## Data quality:
 
 
 ### Dataset 1: Traffic Crashes – People
@@ -138,7 +138,7 @@ For these reasons, the Speed Camera dataset was excluded from model integration.
 
 ---
 
-## Data cleaning: [max 1000 words] Summarize the data cleaning operations you performed and explain how each operation addressed specific data quality issues in your datasets.
+## Data cleaning:
 
 ### Shared Cleaning Pipeline
 We applied the same base cleaning steps to all three datasets. We think this can help keep our process consistent and makes it easier to reproduce.
@@ -186,7 +186,7 @@ https://github.com/ChenxiZhang7/is477outliers.2/blob/main/Milestone%204%20Proces
 
 ---
 
-## Findings: Description of any findings including numeric results and/or visualizations.
+## Findings:
 
 ## What Was Done
 
@@ -533,7 +533,7 @@ https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleani
 
 ---
 
-## References: Formatted citations for any papers, datasets, or software used in your project.
+## References:
 
 - City of Chicago. (2026). Traffic Crashes – Crashes. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data
 - City of Chicago. (2026). Traffic Crashes – People. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data

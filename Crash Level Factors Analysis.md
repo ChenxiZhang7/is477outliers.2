@@ -264,7 +264,7 @@ Speed is the most impactful variable in the dataset
 - The model captures some signal but lacks strong predictive ability
 
 
-## Future work: [~500-1000 words] Brief discussion of any lessons learned and potential future work.
+## Future work: Brief discussion of any lessons learned and potential future work.
 
 - This project was extremely insightful in regards to the limitations of working with real traffic data as well as the analytical process behind it. Although our analysis was somewhat successful in identifying important factors that increase the chance of harm, such as speed and lighting, it also showed a number of areas where the model's predictive performance and depth of insights could be greatly improved. We gathered several insights that would be informative for future work.
 - The first insight is the limitation of depending on a comparatively small set of high level variables. The intricacy of real world traffic and crash level dynamics is not entirely captured by speed, lighting, and weather, despite the fact that these variables are obvious and pertinent. The model's relatively low ROC-AUC score indicates that these factors by themselves are not sufficient for comprehensive analysis. More detailed and behavior oriented features should be the main emphasis of future research. For instance, factors pertaining to driving conduct, such distraction or failure to yield, may have superior predictive power. Additionally, road features like lane layout, traffic intensity, intersection type, and signage can provide further context that the model does not yet provide.
@@ -275,7 +275,7 @@ Speed is the most impactful variable in the dataset
 
 ---
 
-## Challenges: [~500 words] Discuss the main challenges you encountered while working on the project.
+## Challenges: Discuss the main challenges you encountered while working on the project.
 
 ### 1. Mismatched Data Granularity
 

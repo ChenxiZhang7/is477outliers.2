@@ -34,7 +34,7 @@ https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/
 The raw data is accessed directly from the Chicago Data Portal API. No manual download is required, the notebook fetches it automatically at runtime. The cleaned dataset is included in the project GitHub repository as speed_camera_violations.csv.
 
 #### Structure: 
-This is the smallest of the three datasets, with only 9 columns. We filtered a total of 234,913 lines after 2021. We found that this dataset appears once a day for each camera. It can be understood as the daily log recorded by each camera. The contents listed are divided into three categories: camera information `camera_id`, `address`, `violations` of the day such as `violation_date`, `violations`, And the geographical locations of the camera: `latitude`, `longitude`, `x_coordinate`, `y_coordinate`, `location`. The entire dataset has a very regular structure and no complex nested relationships. `Youdaoplaceholder0` is the only numerical measurement column, and the rest of the columns are either identifiers or geographic information.
+This is the smallest of the three datasets, with only 9 columns. We filtered a total of 234,913 lines after 2021. We found that this dataset appears once a day for each camera. It can be understood as the daily log recorded by each camera. The contents listed are divided into three categories: camera information `camera_id`, `address`, `violations` of the day such as `violation_date`, `violations`, And the geographical locations of the camera: `latitude`, `longitude`, `x_coordinate`, `y_coordinate`, `location`. The entire dataset has a very regular structure and no complex nested relationships. `violations` is the only numerical measurement column, and the rest of the columns are either identifiers or geographic information.
 
 #### Content:
 This dataset tracks daily speed violations recorded by cameras in Children's Safety Zones across Chicago. Each camera detects vehicles that exceed the speed limit. Violations are reviewed by two separate contractors before being recorded. The full dataset covers July 2014 to the present, minus the most recent 14 days. We filtered to 2021 onward to match the time window of the other two datasets. 
@@ -102,7 +102,7 @@ Consistency issues include mixed case values in sex and person_type, and crash_d
 After dropping the 10 high missingness columns, we have 19 columns. Column names were lowercased, crash_date converted to datetime, and the date filter applied as a safety check, no additional rows removed. The key outcome variable `injury_classification` has barely any missingness. We think this makes the target label is reliable.
 
 #### Potential Drawbacks of Cleaning
-We find igh missingness in driver_action, driver_vision, and physical_condition means these columns cannot be used as model features without imputation or subsetting, and the subset of records where they are populated likely corresponds to more severe or formally investigated crashes. So there might be selection bias. Dropping the pedestrian-specific columns (`pedpedal_action`, `pedpedal_visibility`, `pedpedal_location`) means `pedestrian-involved` crashes lose their specific behavioral context.
+We find high missingness in driver_action, driver_vision, and physical_condition means these columns cannot be used as model features without imputation or subsetting, and the subset of records where they are populated likely corresponds to more severe or formally investigated crashes. So there might be selection bias. Dropping the pedestrian-specific columns (`pedpedal_action`, `pedpedal_visibility`, `pedpedal_location`) means `pedestrian-involved` crashes lose their specific behavioral context.
 
 ### Dataset 2: Traffic Crashes Dataset
 
@@ -178,7 +178,7 @@ For example, `weather_condition` originally had many categories, several of whic
 - is_night: True if the crash occurred between 8 PM and 5 AM 
 
 ### Speed Camera Dataset
-We applied the same shared pipeline to the Speed Camera dataset. The placeholder string is replaced with NaN, column names are in lowercase, violation_date is parsed to datetime, and records are filtered beyond 2021. No pillars fell. We checked the missing rate of each column, and none exceeded the threshold of 80%.
+We applied the same shared pipeline to the Speed Camera dataset. The placeholder string is replaced with NaN, column names are in lowercase, violation_date is parsed to datetime, and records are filtered beyond 2021. We checked the missing rate of each column, and none exceeded the threshold of 80%.
 For transparency and reproducibility, we recorded and cleaned this dataset, although it was not used in the model. The reason why we exclude it is structural, as we explianed in data quality section. There is no shared row level key between camera records and crash records.
 
 ### This link directs to Box where our cleaned datasets are stored: 
@@ -527,6 +527,8 @@ Improved interpretability of data and made variables more useful for both analys
   df.to_csv(data_dir / "people_dataset.csv", index=False)
   df_cam.to_csv(data_dir / "speed_camera_violations.csv", index=False) 
 
+### This link directs to Box where our cleaned datasets are stored: 
+https://github.com/ChenxiZhang7/is477outliers.2/blob/main/Milestone%204%20Processed%20Datasets
 
 ### This link directs to our code file: 
 https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleaning%20and%20merging%20dataset%20code.ipynb

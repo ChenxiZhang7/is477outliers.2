@@ -343,6 +343,91 @@ Improved interpretability of data and made variables more useful for both analys
 - Re-ran the model with a broader set of predictors
 
 ## Reproducing: Sequence of steps required for someone else to reproduce your results.
+-  Set up environment
+  -  Install required libraries: pandas, numpy, scikit-learn
+  -  Import libraries:
+     - Import pandas as pd
+     - from sklearn.linear_model import LogisticRegression
+     - from sklearn.metrics import accuracy_score, roc_auc_score
+- Download dataset from City of Chicago website
+- Load datasets
+  - Load the People dataset: df = pd.read_csv("path/to/tcp.csv", low_memory=False)
+  - Load the Crashes dataset: df2 = pd.read_csv("path/to/tcc.csv", low_memory=False)
+- Standardize missing values
+  - Replace "UNKNOWN", "NONE", and empty strings "" with NaN in both datasets
+- Inspect missingness (optional)
+  - df.isna().mean().sort_values(ascending=False)
+  - df2.isna().mean().sort_values(ascending=False)
+- Clean column formats
+  - Convert column names to lowercase:
+    - df.columns = df.columns.str.lower()
+    - df2.columns = df2.columns.str.lower()
+  - Convert key fields:
+    - crash_record_id to string
+    - crash_date to datetime using pd.to_datetime(..., errors="coerce")
+- Filter data
+  - Remove rows with missing crash_date
+  - Keep only records from 2021 onward:
+    - df = df[df["crash_date"] >= "2021-01-01"]
+    - df2 = df2[df2["crash_date"] >= "2021-01-01"]
+-  Merge datasets
+  - Merge on crash_record_id using a left join:
+    - dfm = df.merge(df2, on="crash_record_id", how="left")
+  - Remove duplicates:
+    - dfm = dfm.drop_duplicates()
+  - Check missing join keys:
+    - dfm["crash_record_id"].isna().sum()
+- Create injury variables
+  - Create any_injury indicator: 1 if any injury type is greater than 0
+  - Create severe_injury indicator: 1 if incapacitating or fatal injury is greater than 0
+- Aggregate to crash-level dataset
+  - Group by crash_record_id and aggregate:
+    - max of any_injury
+    - count of person_id (rename to num_people)
+    - first value for variables such as speed limit, weather, lighting, etc.
+- Feature engineering
+  - Create weather_group:
+    - CLEAR and CLOUDY is CLEAR
+    - Rain, snow, fog, etc. is BAD
+  - Create lighting_group:
+    - Day → DAY
+    - Darkness → NIGHT
+    - Dawn/Dusk → LOW_LIGHT
+  - Create is_night indicator:
+    - True for hours between 8 PM and 5 AM
+- Exploratory analysis
+  - Compute average injury rates using groupby:
+    - Weather_group
+    - Lighting_group
+    - speed_bin
+- Prepare data for modeling
+  - Select features:
+    - Posted_speed_limit
+    - Weather_group
+    - Lighting_group
+    - Is_night
+  - Convert categorical variables using one-hot encoding:
+    - X = pd.get_dummies(..., drop_first=True)
+  - Set target variable:
+    - y = any_injury
+- Train model
+  - model = LogisticRegression(max_iter=1000)
+  - model.fit(X, y)
+- Generate predictions
+  - injury_prob = model.predict_proba(X)[:, 1]
+  - predict = model.predict(X)
+- Evaluate model
+  - accuracy = accuracy_score(y, predict)
+  - auc = roc_auc_score(y, injury_prob)
+  - Expected results:
+    - Accuracy ≈ 0.896
+    - AUC ≈ 0.587
+- Save outputs
+  - Save datasets as CSV files:
+    - merged dataset
+    - crash-level dataset
+    - cleaned people dataset
+  - Use: to_csv("file_path", index=False)
 
 ### This link directs to our code file: 
 https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleaning%20and%20merging%20dataset%20code.ipynb

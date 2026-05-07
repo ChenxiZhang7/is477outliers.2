@@ -124,7 +124,7 @@ We find high missingness in driver_action, driver_vision, and physical_condition
 #### Before Cleaning 
 This dataset records one row per crash event, including road conditions, weather, time, location, and outcomes. After filtering 2021, it has 585,088 rows and 48 columns.    
 
-The crash identifier and the key results column are in good condition. `Crash_record_id` has no missing values. And the injection related column has only 1,324 missing entries among 585,088 records. The geographic coordinates were lost by 5,546 lines, which is only a small part, but these crashes cannot be placed on the map.
+The crash identifier and the key results column are in good condition. `Crash_record_id` has no missing values. And the injury related column has only 1,324 missing entries among 585,088 records. The geographic coordinates were lost by 5,546 lines, which is only a small part, but these crashes cannot be placed on the map.
 
 A notable data quality issue emerged in the weather_condition column. 43,443 records were marked as unknown approximately 7.4% of the dataset. Technically speaking, this is not a true deficiency, but unknown does not provide actual information about the road conditions at the time of the accident. The speed limit ranges from 0 to 70 miles per hour, with both the average and median around 30 miles per hour, which is consistent with the urban driving dataset.
 

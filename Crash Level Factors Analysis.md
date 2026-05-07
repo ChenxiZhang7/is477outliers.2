@@ -181,7 +181,8 @@ For example, weather_condition originally had many categories, several of which 
 We applied the same shared pipeline to the Speed Camera dataset. The placeholder string is replaced with NaN, column names are in lowercase, violation_date is parsed to datetime, and records are filtered beyond 2021. No pillars fell. We checked the missing rate of each column, and none exceeded the threshold of 80%.
 For transparency and reproducibility, we recorded and cleaned this dataset, although it was not used in the model. The reason why we exclude it is structural, as we explianed in data quality section. There is no shared row level key between camera records and crash records.
 
-### This link directs to Box where our cleaned datasets are stored: https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleaning%20and%20merging%20dataset%20code.ipynb
+### This link directs to Box where our cleaned datasets are stored: 
+https://github.com/ChenxiZhang7/is477outliers.2/blob/main/Milestone%204%20Processed%20Datasets
 
 ---
 
@@ -342,6 +343,9 @@ Improved interpretability of data and made variables more useful for both analys
 - Re-ran the model with a broader set of predictors
 
 ## Reproducing: Sequence of steps required for someone else to reproduce your results.
+
+### This link directs to our code file: 
+https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleaning%20and%20merging%20dataset%20code.ipynb
 
 ---
 

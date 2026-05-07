@@ -39,6 +39,9 @@ This is the smallest of the three datasets, with only 9 columns. We filtered a t
 #### Content:
 This dataset tracks daily speed violations recorded by cameras in Children's Safety Zones across Chicago. Each camera detects vehicles that exceed the speed limit. Violations are reviewed by two separate contractors before being recorded. The full dataset covers July 2014 to the present, minus the most recent 14 days. We filtered to 2021 onward to match the time window of the other two datasets. 
 
+#### Variable Examples: 
+ADDRESS, CAMERA_ID, VIOLATION_DATE, VIOLATIONS, X_COORDINATE, Y_COORDINATE, LATITUDE, LONGITUDE, LOCATION
+
 #### Characteristics:
 The violations column is the core measure. Its distribution is right skewed. The minimum is 1 violation per camera day, the maximum is 1,888, the mean is 56.5, and the median is 34. Most camera days record moderate counts, but a small number of high traffic locations produce very high numbers on certain days. Geographic coordinates are missing for 3.23% of records.
 
@@ -63,6 +66,9 @@ This is the dataset with the largest volume of data that we have used. After fil
 #### Content:
 This dataset records everyone involved in a Chicago traffic crash. It captures who was in the crash, their demographics, how they were protected, and how severely they were injured. Each person is linked to a crash event through` crash_record_id`, which we used to join this dataset with the Crashes dataset. This linkage is what allows us to combine person-level injury outcomes with crash level environmental conditions.
 
+#### Variable Examples: 
+PERSON_ID, PERSON_TYPE, CRASH_RECORD_ID, VEHICLE_ID, CRASH_DATE, SEAT_NO, CITY, STATE, ZIPCODE, SEX, AGE, DRIVERS_LICENSE_STATE, DRIVERS_LICENSE_CLASS, SAFETY_EQUIPMENT, AIRBAG_DEPLOYED, EJECTION, INJURY_CLASSIFICATION, HOSPITAL, EMS_AGENCY, EMS_RUN_NO, DRIVER_ACTION, DRIVER_VISION, PHYSICAL_CONDITION, PEDPEDAL_ACTION, PEDPEDAL_VISIBILITY, PEDPEDAL_LOCATION, BAC_RESULT, BAC_RESULT_VALUE, CELL_PHONE_USE
+
 #### Characteristics:
 The outcome variable injury_classification is missing for only 0.02% of records. So we think it is reliable as a modeling target. Fatal injuries are rare, 354 for drivers and 210 for pedestrians. Several behavioral columns have high missingness after placeholder replacement, driver_action is 69.5% missing, driver_vision is 63.6% missing. These fields are likely only filled when a formal investigation occurs, which may introduce selection bias toward more severe crashes.                                       
 
@@ -82,6 +88,9 @@ This dataset has one line corresponding to one incident. After filtering to 2021
 
 #### Content: 
 This dataset records the circumstances of each crash location, road and weather conditions, time, and injury outcomes. Data comes from CPD's electronic crash reporting system and is updated as reports are finalized. It covers both police reported and self reported crashes within CPD jurisdiction. Crashes on interstate highways and outside CPD jurisdiction are excluded. Citywide coverage begins in September 2017. We filtered to 2021 to match the other datasets.
+
+#### Variable Examples: 
+CRASH_RECORD_ID, CRASH_DATE_EST_I, CRASH_DATE, POSTED_SPEED_LIMIT, TRAFFIC_CONTROL_DEVICE, DEVICE_CONDITION, WEATHER_CONDITION, LIGHTING_CONDITION, FIRST_CRASH_TYPE, TRAFFICWAY_TYPE, LANE_CNT, ALIGNMENT, ROADWAY_SURFACE_COND, ROAD_DEFECT, REPORT_TYPE, CRASH_TYPE
 
 #### Characteristics:
 Posted speed limits range from 0 to 70 mph, with both the mean and median around 30 mph, which is consistent with urban street driving in Chicago. The average crash involves just over 2 vehicles. Crash hour peaks in the afternoon, with a mean of 13:15. Injury columns are missing for 1,324 records. Geographic coordinates are missing for 5,546 rows. One notable issue is that 43,443 records have `weather_condition` recorded as UNKNOWN, which we converted to missing during cleaning. Some environmental fields such as weather and road conditions are based on the reporting officer's best judgment at the time, which may introduce inconsistencies.

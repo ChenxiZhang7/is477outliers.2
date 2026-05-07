@@ -436,4 +436,7 @@ https://github.com/ChenxiZhang7/is477outliers.2/blob/main/milestone%204%20cleani
 
 ## References: Formatted citations for any papers, datasets, or software used in your project.
 
+- City of Chicago. (2026). Traffic Crashes – Crashes. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data
+- City of Chicago. (2026). Traffic Crashes – People. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data
+- City of Chicago. (2026). Speed Camera Violations. Chicago Data Portal. https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data
 

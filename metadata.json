@@ -1,0 +1,84 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Chicago Traffic Crash Injury Severity Analysis",
+  "description": "Analysis of traffic crash injury severity in Chicago using three datasets from the City of Chicago Data Portal. Integrates person-level and crash-level records to identify environmental factors—speed limit, lighting conditions, and weather—associated with injury outcomes using logistic regression.",
+  "url": "https://github.com/ChenxiZhang7/is477outliers.2",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Mustafa El Zayyat"
+    },
+    {
+      "@type": "Person",
+      "name": "Chenxi Zhang"
+    }
+  ],
+  "datePublished": "2026-05",
+  "keywords": [
+    "traffic safety",
+    "crash analysis",
+    "injury prediction",
+    "Chicago",
+    "logistic regression",
+    "data integration",
+    "data curation"
+  ],
+  "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "isBasedOn": [
+    {
+      "@type": "Dataset",
+      "name": "Traffic Crashes – People",
+      "url": "https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d/about_data",
+      "provider": {
+        "@type": "Organization",
+        "name": "City of Chicago"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "name": "Traffic Crashes – Crashes",
+      "url": "https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if/about_data",
+      "provider": {
+        "@type": "Organization",
+        "name": "City of Chicago"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "name": "Speed Camera Violations",
+      "url": "https://data.cityofchicago.org/Transportation/Speed-Camera-Violations/hhkd-xvj4/about_data",
+      "provider": {
+        "@type": "Organization",
+        "name": "City of Chicago"
+      }
+    }
+  ],
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/csv",
+      "contentUrl": "https://github.com/ChenxiZhang7/is477outliers.2",
+      "name": "speed_camera_violations.csv"
+    }
+  ],
+  "variableMeasured": [
+    "injury_classification",
+    "any_injury",
+    "posted_speed_limit",
+    "weather_condition",
+    "lighting_condition",
+    "crash_hour",
+    "weather_group",
+    "lighting_group",
+    "speed_bin",
+    "is_night"
+  ],
+  "temporalCoverage": "2021-01/2026-05",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Chicago, Illinois, USA"
+  },
+  "measurementTechnique": "Logistic regression with one-hot encoding; crash-level aggregation from person-level records",
+  "inLanguage": "en"
+}
